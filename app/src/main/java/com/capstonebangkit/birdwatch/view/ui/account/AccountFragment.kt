@@ -1,4 +1,4 @@
-package com.capstonebangkit.birdwatch.view.ui.bookmark
+package com.capstonebangkit.birdwatch.view.ui.account
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.capstonebangkit.birdwatch.databinding.FragmentDashboardBinding
+import com.capstonebangkit.birdwatch.databinding.FragmentNotificationsBinding
 
-class BookmarkFragment : Fragment() {
+class AccountFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentNotificationsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +22,14 @@ class BookmarkFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val bookmarkViewModel =
-            ViewModelProvider(this).get(BookmarkViewModel::class.java)
+        val accountViewModel =
+            ViewModelProvider(this).get(AccountViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        bookmarkViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textNotifications
+        accountViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
