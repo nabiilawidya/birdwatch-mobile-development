@@ -11,7 +11,8 @@
         android:layout_width="361dp"
         android:layout_height="460dp"
         android:layout_above="@+id/cardView"
-        android:layout_marginBottom="125dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
         android:src="@drawable/ic_bird" />
 
     <androidx.cardview.widget.CardView
@@ -19,30 +20,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:cardCornerRadius="20dp"
-        android:layout_marginBottom="-20dp">
+        android:layout_marginBottom="-20dp"
+        app:cardCornerRadius="20dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical"
-            android:padding="28dp"
-            android:gravity="center">
+            android:padding="30dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selamat datang di BirdWtch"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:layout_marginBottom="10dp"
+                android:text="Selamat datang di BirdWatch"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Silahkan login untuk melanjutkan"/>
+                android:layout_marginBottom="10dp"
+                android:text="Silahkan login dengan akun Google Anda"
+                android:textColor="@color/black" />
+
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:layout_marginBottom="20dp"
                 android:text="Lanjutkan dengan Google"
-                app:cornerRadius="10dp"/>
+                android:textColor="@color/black"
+                app:cornerRadius="10dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
 </RelativeLayout>
