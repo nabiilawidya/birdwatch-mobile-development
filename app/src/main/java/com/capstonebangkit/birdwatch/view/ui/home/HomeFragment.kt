@@ -7,36 +7,35 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.capstonebangkit.birdwatch.R
 import com.capstonebangkit.birdwatch.databinding.FragmentHomeBinding
+import com.capstonebangkit.birdwatch.view.ui.bird.Bird
+import com.capstonebangkit.birdwatch.view.ui.bird.BirdAdapter
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var birdAdapter: BirdAdapter
+    private val birdList = listOf(
+        Bird("Alap-alap kawah", "Peregrine Falcon", R.drawable.peregrine_falcon),
+        Bird("Angsa Hitam", "Black Swan", R.drawable.black_swan),
+        // Add more birds as needed
+    )
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        recyclerView = view.findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        birdAdapter = BirdAdapter(birdList)
+        recyclerView.adapter = birdAdapter
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        return view
     }
 }
