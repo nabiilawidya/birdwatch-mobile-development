@@ -46,14 +46,10 @@
                 android:text="Silahkan login dengan akun Google Anda"
                 android:textColor="@color/black" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLogin"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginBottom="20dp"
-                android:text="Lanjutkan dengan Google"
-                android:textColor="@color/black"
-                app:cornerRadius="10dp" />
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/signInButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>
