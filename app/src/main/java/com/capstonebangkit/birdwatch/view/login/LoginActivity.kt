@@ -1,6 +1,5 @@
 package com.capstonebangkit.birdwatch.view.login
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -98,6 +97,14 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithCredential:success")
                     val user: FirebaseUser? = auth.currentUser
+                    user?.getIdToken(true)?.addOnCompleteListener { tokenTask ->
+                        if (tokenTask.isSuccessful) {
+                            val idToken = tokenTask.result?.token
+                            Log.d(TAG, "Token ID: $idToken")
+                        } else {
+                            Log.e(TAG, "Failed to get token ID", tokenTask.exception)
+                        }
+                    }
                     updateUI(user)
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -118,6 +125,8 @@ class LoginActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
         updateUI(currentUser)
     }
+
+
     companion object {
         private const val TAG = "LoginActivity"
     }
