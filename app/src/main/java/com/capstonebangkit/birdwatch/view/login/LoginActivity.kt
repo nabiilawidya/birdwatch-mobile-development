@@ -56,7 +56,8 @@ class LoginActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
-                val result: GetCredentialResponse = credentialManager.getCredential( //import from androidx.CredentialManager
+                val result: GetCredentialResponse = credentialManager.getCredential(
+                    //import from androidx.CredentialManager
                     request = request,
                     context = this@LoginActivity,
                 )
@@ -73,7 +74,8 @@ class LoginActivity : AppCompatActivity() {
             is CustomCredential -> {
                 if (credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
                     try {
-                        val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
+                        val googleIdTokenCredential =
+                            GoogleIdTokenCredential.createFrom(credential.data)
                         firebaseAuthWithGoogle(googleIdTokenCredential.idToken)
                     } catch (e: GoogleIdTokenParsingException) {
                         Log.e(TAG, "Received an invalid google id token response", e)
@@ -83,6 +85,7 @@ class LoginActivity : AppCompatActivity() {
                     Log.e(TAG, "Unexpected type of credential")
                 }
             }
+
             else -> {
                 // Catch any unrecognized credential type here.
                 Log.e(TAG, "Unexpected type of credential")
